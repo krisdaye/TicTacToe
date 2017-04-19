@@ -1,4 +1,4 @@
-package tictactoe;
+package edu.jsu.mcis;
 
 import java.util.*;
 
@@ -7,7 +7,7 @@ public class TicTacToe {
 	public enum Mark { EMPTY, X, O};
 	public enum Result { PLAY, XWIN, OWIN, TIE };
 	private Mark[][] mark;
-	private boolean xTurn = true;
+	public boolean xTurn = true;
 	private boolean valid = true;
 	int row, col;
 	
@@ -16,10 +16,6 @@ public class TicTacToe {
 	public static Scanner input = new Scanner(System.in);
 	
 	/*
-	 *
-	 *
-	 *
-	 *
 	 *
 	 *
 	 */
@@ -31,12 +27,9 @@ public class TicTacToe {
 			}
 		}
 		xTurn = true;
-	}
+	}//End Constructor
 	
 	/*
-	 *
-	 *
-	 *
 	 *
 	 *
 	 *
@@ -52,18 +45,13 @@ public class TicTacToe {
 			return Mark.O;
 		}
 		return mark[row][col];
-	}
+	}//End getMark
 	
 	/*
 	 *
 	 *
-	 *
-	 *
-	 *
-	 *
 	 */
 	public void placeMark(int row, int col){
-		//if (valid == true){
 		if(mark[row][col].equals(Mark.EMPTY)){
 			if (xTurn){
 				mark[row][col] = Mark.X;
@@ -77,31 +65,9 @@ public class TicTacToe {
 		else {
 			System.out.println("Location: " + row + "," + col + " has already been used. Please select another location.");
 		}
-		//}
-	}
+	}//End placeMark
 	
 	/*
-	 *
-	 *
-	 *
-	 *
-	 *
-	 *
-	 */
-	public void display() {
-		System.out.println("1: " + mark[0][0] + "|" + mark[0][1] + "|" + mark[0][2]);
-		System.out.println("    --+--+--");
-		System.out.println("2: " + mark[1][0] + "|" + mark[1][1] + "|" + mark[1][2]);
-		System.out.println("  --+-+--");
-		System.out.println("3: " + mark[2][0] + "|" + mark[2][1] + "|" + mark[2][2]);
-		System.out.println("   1 2 3");
-	}
-	
-	/*
-	 *
-	 *
-	 *
-	 *
 	 *
 	 *
 	 */
@@ -115,13 +81,9 @@ public class TicTacToe {
 			valid = false;
 		}
 		return valid;
-	}
+	}//End checkImports
 	
 	/*
-	 *
-	 *
-	 *
-	 *
 	 *
 	 *
 	 */
@@ -195,34 +157,6 @@ public class TicTacToe {
             state = Result.PLAY;
         }
 		return state;
-	}
+	}//End checkForWin
+}//End TicTacToe
 
-	
-	/*
-	 *
-	 *
-	 *
-	 *
-	 *
-	 */
-	public static void main(String [] args) {
-		TicTacToe game = new TicTacToe();
-		Result state = Result.PLAY;
-		
-		while (state.equals(Result.PLAY)) {
-			game.display();
-			System.out.println("Enter row then col (ex: 1 2): ");
-			int row = input.nextInt() - 1;
-			int col = input.nextInt() - 1;
-			boolean yes = game.checkInputs(row, col);
-			
-			if (yes){
-				game.placeMark(row, col);
-			}
-			state = game.checkForWin();
-		}
-		
-		
-	
-	}
-}
